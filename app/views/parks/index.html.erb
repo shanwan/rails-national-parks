@@ -1,0 +1,28 @@
+<div class="center jumbotron">
+<h1>Park Listing</h1>
+
+<%= link_to 'New park', new_park_path %>
+</div>
+<table class="table table-condensed">
+  <tr>
+    <th>Name</th>
+    <th>Desscription</th>
+    <th>Picture</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Destroy</th>
+  </tr>
+
+  <% @park.each do |park| %>
+  <tr>
+    <td><%= park.name %></td>
+    <td><%= park.description %></td>
+    <td><%= cl_image_tag(park.picture, :crop => :fill, :width => 120, :height => 80) %></td>
+    <td><%= link_to 'Show', park_path(park) %></td>
+    <td><%= link_to 'Edit', edit_park_path(park) %></td>
+    <td><%= link_to 'Destroy', park_path(park),
+    method: :delete,
+    data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
